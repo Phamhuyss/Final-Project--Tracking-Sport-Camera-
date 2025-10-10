@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SportTrack — Showcase</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>SportTrack — Camera Tracking Showcase</h1>
+    <p> Static Web for the Tracking Camera Website.</p>
+    <a class="btn" href="#gallery">Watch Highlight</a>
+  </header>
+
+  <main class="container">
+    <section id="about" class="card">
+      <h2>About</h2>
+      <p>Group Final Project: Tracking Sport System.</p>
+    </section>
+
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div class="grid">
+        <figure class="card">
+          <img src="assets/tranh.jpg" alt="Sample highlight 1" />
+          <figcaption>Highlight #1</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="assets/pic.jpg" alt="Sample highlight 2" />
+          <figcaption>Highlight #2</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="assets/pic2.jpg" alt="Sample highlight 3" />
+          <figcaption>Highlight #3</figcaption>
+        </figure>
+        <figure class="card">
+          <video controls preload="metadata">
+            <source src="assets/Tennis.mp4" type="video/mp4" />
+          </video>
+          <figcaption>Video demo</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <small>© <span id="year"></span> SportTrack Team — Static demo</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
