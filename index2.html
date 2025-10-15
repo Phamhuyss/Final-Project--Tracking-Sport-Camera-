@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login UI – HTML & CSS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ====== Reset cơ bản ====== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
+      color: #0f172a; /* slate-900 */
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #93c5fd33, transparent 60%),
+        radial-gradient(800px 400px at 110% 10%, #a78bfa33, transparent 60%),
+        linear-gradient(180deg, #f8fafc, #eef2ff 60%, #e2e8f0);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    /* ====== Card / Glass ====== */
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(180deg, #ffffffee, #ffffffcc);
+      backdrop-filter: blur(10px);
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      box-shadow:
+        0 10px 15px -3px rgba(15,23,42,.08),
+        0 4px 6px -4px rgba(15,23,42,.06);
+      overflow: hidden;
+    }
+
+    .card__header {
+      padding: 28px 28px 12px;
+      text-align: center;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      font-size: 18px;
+      color: #111827;
+    }
+    .brand__logo {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: linear-gradient(135deg,#6366f1,#22d3ee);
+      box-shadow: inset 0 0 0 2px #ffffffaa;
+    }
+    .card__title {
+      margin: 14px 0 6px;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .card__sub {
+      margin: 0;
+      color: #475569;
+      font-size: 14px;
+    }
+
+    /* ====== Form ====== */
+    .card__body { padding: 20px 28px 24px; }
+    .field { margin-bottom: 14px; }
+    .label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+    .control {
+      position: relative;
+    }
+    .input {
+      width: 100%;
+      appearance: none;
+      border: 1px solid #e2e8f0;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 12px 44px 12px 14px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .input:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 4px #6366f122;
+    }
+    .icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px; height: 20px;
+      color: #64748b;
+      cursor: default;
+    }
+    .btn-eye { cursor: pointer; }
+
+    .row {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 10px; margin: 6px 0 16px;
+      font-size: 13px; color: #475569;
+    }
+    .checkbox {
+      display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+      user-select: none;
+    }
+    .checkbox input { width: 16px; height: 16px; accent-color: #6366f1; }
+
+    .btn {
+      width: 100%;
+      border: 0; border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform .06s ease, box-shadow .2s;
+    }
+    .btn--primary {
+      color: white;
+      background: linear-gradient(135deg,#6366f1,#06b6d4);
+      box-shadow: 0 8px 16px rgba(99,102,241,.25);
+    }
+    .btn--primary:active { transform: translateY(1px); }
+
+    .or {
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+      gap: 12px; color: #64748b; font-size: 12px; margin: 16px 0;
+    }
+    .or::before, .or::after {
+      content: ""; height: 1px; background: #e2e8f0;
+    }
+
+    .oauth {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    }
+    .btn--ghost {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: #0f172a;
+    }
+    .btn--ghost:active { transform: translateY(1px); }
+
+    .card__footer {
+      padding: 18px 28px 26px;
+      text-align: center;
+      font-size: 14px;
+      color: #475569;
+    }
+    a { color: #4f46e5; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ====== Small ====== */
+    @media (max-width: 420px) {
+      .card { border-radius: 16px; }
+      .card__header, .card__body, .card__footer { padding-left: 18px; padding-right: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="title">
+    <header class="card__header">
+      <div class="brand" aria-label="Brand">
+        <span class="brand__logo" aria-hidden="true"></span>
+        <span>MyApp</span>
+      </div>
+      <h1 id="title" class="card__title">Đăng nhập</h1>
+      <p class="card__sub">Chào mừng quay lại 👋</p>
+    </header>
+
+    <section class="card__body">
+      <form id="login-form" action="#" method="post" novalidate>
+        <div class="field">
+          <label for="email" class="label">Email</label>
+          <div class="control">
+            <input class="input" id="email" name="email" type="email" placeholder="you@example.com" autocomplete="username" required />
+            <!-- mail icon -->
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 6h16a2 2 0 0 1 2 2v.2l-10 6.25L2 8.2V8a2 2 0 0 1 2-2Zm0 4.3 9.35 5.84a1 1 0 0 0 1.1 0L22 10.3V16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-5.7Z" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="password" class="label">Mật khẩu</label>
+          <div class="control">
+            <input class="input" id="password" name="password" type="password" placeholder="••••••••" autocomplete="current-password" required />
+            <!-- eye toggle -->
+            <svg class="icon btn-eye" id="toggle-eye" viewBox="0 0 24 24" fill="none" role="button" tabindex="0" aria-label="Hiện/ẩn mật khẩu">
+              <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="checkbox"><input type="checkbox" id="remember" /> Nhớ đăng nhập</label>
+          <a href="#" aria-label="Quên mật khẩu">Quên mật khẩu?</a>
+        </div>
+
+        <button type="submit" class="btn btn--primary">Đăng nhập</button>
+
+        <div class="or">Hoặc</div>
+
+        <div class="oauth">
+          <button type="button" class="btn btn--ghost" aria-label="Đăng nhập Google">Google</button>
+          <button type="button" class="btn btn--ghost" aria-label="Đăng nhập GitHub">GitHub</button>
+        </div>
+      </form>
+    </section>
+
+    <footer class="card__footer">
+      Chưa có tài khoản? <a href="#">Đăng ký</a>
+    </footer>
+  </main>
+
+  <script>
+    // Toggle show/hide password
+    const pwd = document.getElementById('password');
+    const eye = document.getElementById('toggle-eye');
+    const toggle = () => { pwd.type = (pwd.type === 'password') ? 'text' : 'password'; };
+    eye.addEventListener('click', toggle);
+    eye.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+
+    // Demo submit (chặn reload)
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Demo login UI – thêm xử lý backend sau nhé!');
+    });
+  </script>
+</body>
+</html>
